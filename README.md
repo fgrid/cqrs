@@ -1,7 +1,7 @@
 Learning CQRS/ES
 ================
 
-This is a sly try to find a grip to CQRS/ES in golang.
+This is a shy try to find a grip to CQRS/ES in golang.
 
 The project is inspired by Gregory Young's m-r project.
 
