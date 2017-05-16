@@ -5,10 +5,12 @@ import (
 	"github.com/fgrid/uuid"
 )
 
+// Repository to access aggregates
 type Repository struct {
 	es cqrs.EventStore
 }
 
+// NewRepository backed by the given event store (event sourced aggregates)
 func NewRepository(es cqrs.EventStore) *Repository {
 	return &Repository{es: es}
 }
