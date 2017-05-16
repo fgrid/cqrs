@@ -3,13 +3,13 @@ package main
 import "github.com/fgrid/cqrs/simple"
 
 func main() {
-	eventBus := simple.NewEventBus()
+	eventBus := simple.NewEventBus(2)
 	eventStore := simple.NewEventStore(eventBus)
 	repository := simple.NewRepository(eventStore)
-	commandBus := simple.NewCommandBus()
+	commandBus := simple.NewCommandBus(2)
 	commands := NewInventoryCommandHandlers(repository)
-	commandBus.Register("CreateInventoryItem", commands.CreateInventoryItem)
+	commandBus.RegisterFunc("*CreateInventoryItem", commands.CreateInventoryItem)
 
 	detail := NewInventoryItemDetailView()
-	eventBus.Register("InventoryItemCreated", detail.OnInventoryItemCreated)
+	eventBus.RegisterFunc("InventoryItemCreated", detail.OnInventoryItemCreated)
 }
